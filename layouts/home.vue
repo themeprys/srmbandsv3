@@ -1,10 +1,9 @@
 <template>
   <div>
-    <section>
-      <div>
-        <nuxt />
-      </div>
-    </section>
+    <generalHeader />
+    <generalNavbar />
+    <nuxt />
+    <generalFooter />
   </div>
 </template>
 

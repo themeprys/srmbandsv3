@@ -1,10 +1,6 @@
 <template>
   <div>
-    <section>
-      <div>
         <nuxt />
-      </div>
-    </section>
   </div>
 </template>
 
