@@ -9,7 +9,7 @@
     "generate": "nuxt generate"
   },
   "engines": {
-    "node": ">=16.0.0 <17.0.0"
+    "node": ">=14.0.0 <17.0.0"
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.1-rc.5",
