@@ -10,12 +10,14 @@
         </li>
       </ul>
     </nav>
-    <RostersCard />
-    <RostersHelpCard />    
+    <RostersCard v-bind:data="getObjects" />
+    <RostersHelpCard/>    
   </section>
 </template>
 
 <script>
+import getObjects from "~/queries/allRosters";
+// import getObjects from "~/queries/allHappytohelps";
 
 export default {
   layout: "master",
@@ -53,5 +55,11 @@ export default {
       ],
     };
   },
+  apollo: {
+  getObjects: {
+      prefetch: true,
+      query: getObjects
+    }
+  },    
 };
 </script>

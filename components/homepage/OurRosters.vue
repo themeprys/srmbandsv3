@@ -4,7 +4,7 @@
             <p>Our Rosters</p>
         </div>
         
-    <div class="column is-3" v-for="roster in getObjects.objects" :key="roster.id">
+    <div class="column is-3" v-for="roster in listRosterhome" :key="roster.id">
       <div class="card px-3 srm_newslist">
         <router-link :to="'/rosters/' + roster.slug">        
         <!-- <router-link :to="/artist/ + item.nid"> -->
@@ -63,6 +63,13 @@ export default {
       query: getObjects
     }
   },  
+  computed: {
+    listRosterhome() {
+      return this.getObjects.objects.slice().sort((a, b) => {
+        return (a.metadata.urutan_roster) - (b.metadata.urutan_roster);
+      });
+    },
+  },     
   // async mounted() {
   //   const response = await axios.get(
   //     "https://cms.xabi.us/api/v1/srmrosters"

@@ -10,7 +10,7 @@
         </li>
       </ul>
     </nav>
-    <NewsCard v-bind:data="getObjects" />
+    <NewsCard v-bind:data="getObjects" /> 
   </section>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="columns is-multiline">
-    <template v-if="getObjects">
+    <template v-if="data">
     <div class="column is-4" v-for="roster in listRosters" :key="roster.id">
       <div class="card px-3 srm_newslist">
         <router-link :to="'/rosters/' + roster.slug">
@@ -16,6 +16,7 @@
             <div class="media">
               <div class="media-content">
                 <p class="title is-4" v-html="roster.title"></p>
+                <!-- {{ roster.metadata.urutan_roster }} -->
                 <!-- <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time> -->
               </div>
             </div>
@@ -24,7 +25,7 @@
       </div>
     </div>
     </template>
-    <template v-if="!getObjects">
+    <template v-if="!data">
       <div class="column is-4" v-for="i in skeleton" :key="i">
         <div class="card px-3 srm_newslist">
           <b-skeleton height="180px"></b-skeleton>
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import getObjects from "~/queries/allRosters";
+// import getObjects from "~/queries/allRosters";
 
 export default {
   data() {
@@ -57,21 +58,33 @@ export default {
       skeleton: 9,
     };
   },
-  apollo: {
-  getObjects: {
-      prefetch: true,
-      query: getObjects
-    }
-  }, 
+  // apollo: {
+  // getObjects: {
+  //     prefetch: true,
+  //     query: getObjects
+  //   }
+  // }, 
   computed: {
     listRosters() {
-      return this.getObjects.objects.slice().sort((a, b) => {
-        return (
-          new Date(a.metadata.urutan_roster) - new Date(b.metadata.urutan_roster)
-        );
+      return this.data.objects.slice().sort((a, b) => {
+        return (a.metadata.urutan_roster) - (b.metadata.urutan_roster);
+        // return (
+        //   new Date(a.created_at) - new Date(b.created_at)
+        // );
       });
     },
-  },  
+  },
+  props: ['data'],  
+  date: new Date(),  
+  // computed: {
+  //   listRosters() {
+  //     return this.getObjects.objects.slice().sort((a, b) => {
+  //       return (
+  //         new Date(a.metadata.urutan_roster) - new Date(b.metadata.urutan_roster)
+  //       );
+  //     });
+  //   },
+  // },  
 };
 </script>
 

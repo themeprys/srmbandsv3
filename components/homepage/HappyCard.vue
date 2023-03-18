@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="columns is-multiline" v-if="getObjects">
-      <div class="column is-3" v-for="happy in getObjects.objects" :key="happy.id" >
+      <div class="column is-3" v-for="happy in listHappyhome" :key="happy.id" >
         <div class="card px-3">
           <router-link :to="'/help/' + happy.slug">
             <div class="card-image">
@@ -52,6 +52,13 @@ export default {
       query: getObjects
     }
   },  
+  computed: {
+    listHappyhome() {
+      return this.getObjects.objects.slice().sort((a, b) => {
+        return (a.metadata.urutan_happy_to_help) - (b.metadata.urutan_happy_to_help);
+      });
+    },
+  },     
   // async mounted() {
   //   const response = await axios.get("https://cms.xabi.us/api/v1/srmhappy");
   //   this.listHappy = response.data;
